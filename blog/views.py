@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-from .forms import PostItemForm
+from .forms import *
 
 # Create your views here.
 def post_list(request):
@@ -19,7 +19,7 @@ def delete_post(request, id):
     
 def create_posts(request):
     if request.method=="POST":
-        form = PostItemForm(request.POST)
+        form = PostItemForm(request.POST, request.FILES)
         message = form.save(commit=False)
         message.author = request.user
         message.save()
