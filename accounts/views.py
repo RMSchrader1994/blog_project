@@ -4,6 +4,8 @@ from .forms import UserLoginForm, UserRegistrationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+
 def login(request):
     if request.method == "POST":
         form = UserLoginForm(request.POST)

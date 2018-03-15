@@ -10,6 +10,8 @@ def post_list(request):
     
 def post_detail(request, id):
     post = get_object_or_404(Post, pk=id)
+    post.views += 1
+    post.save()
     return render(request, "blog/post_detail.html", {'post': post})
     
 def delete_post(request, id):

@@ -1,5 +1,5 @@
 {% extends "home/base.html" %}
-
+{% load gravatar %}
 {% block content %}
 <br>
 <a href="{% url 'create_posts' %}" class="btn btn-danger btn-sm btn-block" role="button"><i class="glyphicon glyphicon-edit"></i> Compose</a>
@@ -7,8 +7,8 @@
     {% for post in posts %}
         <div class="row">
             <div class="col-md-2 col-sm-3 text-center">
-                <a class="story-img" href="#">
-                    <img src="http://via.placeholder.com/100x100" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                <a class="story-img" href="{% url 'login' %}">
+                    <img src="{% gravatar_url post.author.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
                 </a>
             </div>
             <div class="col-md-10 col-sm-9">
@@ -19,7 +19,7 @@
                         <p><button class="btn btn-default" onclick="location.href='{% url 'post_detail' post.id %}'">Read More</button>
                             {% if post.author == request.user %}<button class="btn btn-default" onclick="location.href='{% url 'delete_post' post.id %}'">Delete</button>
                             <button class="btn btn-default" onclick="location.href='{% url 'edit_post' post.id %}'">Edit</button>{% endif %}</p>
-                        <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>#</strong>{{ post.tag }}| <strong>Posted by </strong>{{ post.author }}</p>
+                        <p>{{ post.created_date }} | <strong>Views</strong> {{ post.views }} | <strong>#</strong>{{ post.tag }}| <strong>Posted by </strong>{{ post.author }}</p>
                         <hr>
                     </div>
                 </div>

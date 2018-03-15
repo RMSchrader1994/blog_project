@@ -1,6 +1,9 @@
 {% extends 'home/base.html' %}
-
+{% load gravatar %}
 {% block content %}
-    <h1>Success!</h1>
-    <p>You are logged in as {{ user.username }}</p>
+    <h1>You are logged in as</h1>
+    <h2>{{ user.username }}</h2>
+                <a class="story-img" href="{% url 'post_list' %}">
+                    <img src="{% gravatar_url user.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+                </a>
 {% endblock content %}
